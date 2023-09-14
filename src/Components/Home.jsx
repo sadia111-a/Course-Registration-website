@@ -11,7 +11,7 @@ const Home = () => {
   }, []);
   //   console.log(allCourse);
   return (
-    <div className="w-full lg:w-3/4">
+    <div className="w-full lg:w-3/4 bg-base-200 ">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {allCourse.map((course) => (
           <div key={course.id} className="card bg-base-100 shadow-xl">
@@ -22,7 +22,9 @@ const Home = () => {
               <h2 className="card-title text-[#1C1B1B] text-lg">
                 {course.course_name}
               </h2>
-              <p>{course.details}</p>
+              <p className="text-sm text-[#1C1B1B99] font-normal">
+                {course.details}
+              </p>
               <div className="flex gap-3">
                 <p className="flex">
                   <svg
@@ -47,7 +49,9 @@ const Home = () => {
                       stroke-linejoin="round"
                     />
                   </svg>
-                  <span>Price :{course.price}</span>
+                  <span className="text-[#1C1B1B99] text-base font-medium">
+                    Price :{course.price}
+                  </span>
                 </p>
                 <p className="flex">
                   <svg
@@ -65,7 +69,9 @@ const Home = () => {
                       stroke-linejoin="round"
                     />
                   </svg>{" "}
-                  <span>Credit :{course.credit_time}hr</span>
+                  <span className="text-[#1C1B1B99] text-base font-medium">
+                    Credit :{course.credit_time}hr
+                  </span>
                 </p>
               </div>
 
