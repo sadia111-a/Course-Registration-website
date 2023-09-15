@@ -1,7 +1,12 @@
 // import React from "react";
 import PropTypes from "prop-types";
-const Cart = ({ selectedCourse }) => {
-  console.log(selectedCourse);
+
+const Cart = ({ selectedCourse, totalCredit }) => {
+  // console.log(selectedCourse);
+  const totalPrice = selectedCourse.reduce(
+    (acc, course) => acc + course.price,
+    0
+  );
   return (
     <div>
       <div className="bg-white rounded-lg pl-2 ">
@@ -22,12 +27,12 @@ const Cart = ({ selectedCourse }) => {
           ))}
         </p>
         <hr className="border-b-0" />
-        <p className="text-[ #1C1B1BCC] text-lg font-medium pt-2 pb-2">
-          Total Credit Hour : 13
+        <p className="text-[#1C1B1BCC] text-lg font-medium pt-2 pb-2">
+          Total Credit Hour: {totalCredit} hr
         </p>
         <hr />
-        <p className="text-[ #1C1B1BCC] text-lg font-semibold pt-2 pb-2">
-          Total Price : 48000 USD
+        <p className="text-[#1C1B1BCC] text-lg font-semibold pt-2 pb-2">
+          Total Price: {totalPrice} USD
         </p>
       </div>
     </div>
@@ -35,5 +40,6 @@ const Cart = ({ selectedCourse }) => {
 };
 Cart.propTypes = {
   selectedCourse: PropTypes.array.isRequired,
+  totalCredit: PropTypes.number.isRequired,
 };
 export default Cart;

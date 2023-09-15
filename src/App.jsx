@@ -1,5 +1,5 @@
 import "./App.css";
-// import Cart from "./Components/Cart";
+
 import Home from "./Components/Home";
 
 function App() {
@@ -10,7 +10,6 @@ function App() {
       </h1>
 
       <Home></Home>
-      {/* <Cart selectedCourse={selectedCourse}></Cart> */}
     </div>
   );
 }
