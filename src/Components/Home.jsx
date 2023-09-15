@@ -8,6 +8,7 @@ const Home = () => {
   const [allCourse, setAllCourse] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState([]);
   const [totalCredit, setTotalCredit] = useState(0);
+  const [remaining, setRemaining] = useState(20);
 
   useEffect(() => {
     fetch("./course.json")
@@ -17,25 +18,25 @@ const Home = () => {
 
   const handleSelectCourse = (course) => {
     const isExist = selectedCourse.find((item) => item.id == course.id);
+    let count = course.credit_time;
     if (isExist) {
-      return alert("already booked");
+      return alert("already selected");
     } else {
-      setSelectedCourse([...selectedCourse, course]);
+      selectedCourse.forEach((item) => {
+        count = count + item.credit_time;
+      });
     }
-  };
-
-  const handleTotalCredit = (courseCreditTime) => {
-    const newTotalCredit = totalCredit + courseCreditTime;
-    if (newTotalCredit > 20) {
+    const totalRemaining = 20 - count;
+    if (count > 20) {
       return alert("you can not add more than 20credit");
     } else {
-      setTotalCredit(newTotalCredit);
-      updateCreditHour(newTotalCredit);
+      setTotalCredit(count);
+      setRemaining(totalRemaining);
+      if (totalRemaining === 0) {
+        alert("Remaining credit hours are zero!");
+      }
+      setSelectedCourse([...selectedCourse, course]);
     }
-  };
-
-  const updateCreditHour = (newCredit) => {
-    setTotalCredit(newCredit);
   };
 
   return (
@@ -64,11 +65,7 @@ const Home = () => {
                   <p className="flex items-center">
                     <BsBook></BsBook>
                     <span className="text-[#1C1B1B99] text-base font-medium">
-                      <button
-                        onClick={() => handleTotalCredit(course.credit_time)}
-                      >
-                        Credit :{course.credit_time}hr
-                      </button>
+                      Credit :{course.credit_time}hr
                     </span>
                   </p>
                 </div>
@@ -89,8 +86,8 @@ const Home = () => {
       <div className="w-full lg:w-1/4 ">
         <Cart
           selectedCourse={selectedCourse}
+          remaining={remaining}
           totalCredit={totalCredit}
-          updateCreditHour={updateCreditHour}
         ></Cart>
       </div>
     </div>
