@@ -1,6 +1,8 @@
 import "./App.css";
 
 import Home from "./Components/Home";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
       </h1>
 
       <Home></Home>
+      <ToastContainer />
     </div>
   );
 }

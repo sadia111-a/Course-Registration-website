@@ -1,8 +1,6 @@
-// import React from "react";
 import PropTypes from "prop-types";
 
 const Cart = ({ selectedCourse, totalCredit, remaining }) => {
-  // console.log(selectedCourse);
   const totalPrice = selectedCourse.reduce(
     (acc, course) => acc + course.price,
     0

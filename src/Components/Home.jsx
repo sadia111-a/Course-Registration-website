@@ -3,6 +3,8 @@ import { useState } from "react";
 import Cart from "./Cart";
 import { FiDollarSign } from "react-icons/fi";
 import { BsBook } from "react-icons/bs";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const [allCourse, setAllCourse] = useState([]);
@@ -20,7 +22,10 @@ const Home = () => {
     const isExist = selectedCourse.find((item) => item.id == course.id);
     let count = course.credit_time;
     if (isExist) {
-      return alert("already selected");
+      return toast.error("Course already selected", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+      });
     } else {
       selectedCourse.forEach((item) => {
         count = count + item.credit_time;
@@ -28,12 +33,18 @@ const Home = () => {
     }
     const totalRemaining = 20 - count;
     if (count > 20) {
-      return alert("you can not add more than 20credit");
+      return toast.error("You can not add more then 20credit", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 2000,
+      });
     } else {
       setTotalCredit(count);
       setRemaining(totalRemaining);
       if (totalRemaining === 0) {
-        alert("Remaining credit hours are zero!");
+        toast.error("Remaining credit hours is zero", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 2000,
+        });
       }
       setSelectedCourse([...selectedCourse, course]);
     }
