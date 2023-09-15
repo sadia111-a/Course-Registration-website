@@ -25,9 +25,17 @@ const Home = () => {
   };
 
   const handleTotalCredit = (courseCreditTime) => {
-    // Calculate the new total credit hours by adding the course's credit_time
     const newTotalCredit = totalCredit + courseCreditTime;
-    setTotalCredit(newTotalCredit);
+    if (newTotalCredit > 20) {
+      return alert("you can not add more than 20credit");
+    } else {
+      setTotalCredit(newTotalCredit);
+      updateCreditHour(newTotalCredit);
+    }
+  };
+
+  const updateCreditHour = (newCredit) => {
+    setTotalCredit(newCredit);
   };
 
   return (
@@ -79,7 +87,11 @@ const Home = () => {
         </div>
       </div>
       <div className="w-full lg:w-1/4 ">
-        <Cart selectedCourse={selectedCourse} totalCredit={totalCredit}></Cart>
+        <Cart
+          selectedCourse={selectedCourse}
+          totalCredit={totalCredit}
+          updateCreditHour={updateCreditHour}
+        ></Cart>
       </div>
     </div>
   );
