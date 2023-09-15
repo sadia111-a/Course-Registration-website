@@ -1,5 +1,5 @@
 import "./App.css";
-import Cart from "./Components/Cart";
+// import Cart from "./Components/Cart";
 import Home from "./Components/Home";
 
 function App() {
@@ -8,10 +8,9 @@ function App() {
       <h1 className="text-center text-[#1C1B1B] text-xl md:text-xl lg:text-3xl font-bold pt-8 mb-6">
         Course Registration
       </h1>
-      <div className="flex lg:gap-1 flex-col md:flex-col lg:flex-row">
-        <Home></Home>
-        <Cart></Cart>
-      </div>
+
+      <Home></Home>
+      {/* <Cart selectedCourse={selectedCourse}></Cart> */}
     </div>
   );
 }
