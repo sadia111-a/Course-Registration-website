@@ -73,7 +73,7 @@ const Home = () => {
                       Price :{course.price}
                     </span>
                   </p>
-                  <p className="flex items-center">
+                  <p className="flex gap-1 items-center">
                     <BsBook></BsBook>
                     <span className="text-[#1C1B1B99] text-base font-medium">
                       Credit :{course.credit_time}hr
